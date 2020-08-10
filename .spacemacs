@@ -44,8 +44,12 @@ This function should only modify configuration layer settings."
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode
             c-c++-adopt-subprojects t
-            c-c++-lsp-enable-semantic-highlight 'rainbow
+            c-c++-enable-clang-support t
+            c-c++-enable-clang-format-on-save t
+            c-c++-enable-google-newline t
+            c-c++-enable-google-style t
             c-c++-backend 'lsp-clangd
+            c-c++-lsp-enable-semantic-highlight 'rainbow
             lsp-clients-clangd-executable "/usr/local/opt/llvm/bin/clangd"
             )
      emacs-lisp
@@ -509,8 +513,8 @@ Put your configuration code here, except for variables that should be set
 before packages are loaded."
   (setq-default evil-escape-key-sequence "jk")
   ;; setting of c++ indent
-  (setq-default indent-tabs-mode nil)
-  (setq-default c-basic-offset 4)
+  ;; (setq-default indent-tabs-mode nil)
+  ;; (setq-default c-basic-offset 4)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
