@@ -508,9 +508,11 @@ configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
   (setq-default evil-escape-key-sequence "jk")
+  (setq-default lsp-restart 'auto-restart)
+  (setq-default gc-cons-threshold 10000000);
   ;; setting of c++ indent
-  (setq-default indent-tabs-mode nil)
-  (setq-default c-basic-offset 4)
+  ;; (setq-default indent-tabs-mode nil)
+  ;; (setq-default c-basic-offset 4)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
