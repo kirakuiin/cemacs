@@ -48,6 +48,12 @@ This function should only modify configuration layer settings."
             c-c++-backend 'lsp-clangd
             lsp-clients-clangd-executable "/usr/local/opt/llvm/bin/clangd"
             )
+      (lua :variables
+           lua-backend nil
+      ;;   lua-lsp-emmy-jar-path "~/.emacs.d/EmmyLua-LS-all.jar" ; default path
+      ;;   lua-lsp-emmy-java-path "java"                         ; default path
+      ;;   lua-lsp-emmy-enable-file-watchers t                   ; enabled default
+            )
      emacs-lisp
      helm
      markdown
