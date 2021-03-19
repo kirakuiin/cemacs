@@ -38,9 +38,24 @@ This function should only modify configuration layer settings."
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     javascript
      auto-completion
+     git
+     emacs-lisp
+     helm
+     markdown
+     cmake
+     multiple-cursors
+     treemacs
      vimscript
+     javascript
+     (lua :variables
+          lua-backend nil
+      ;;  lua-lsp-emmy-jar-path "~/.emacs.d/EmmyLua-LS-all.jar" ; default path
+      ;;  lua-lsp-emmy-java-path "java"                         ; default path
+      ;;  lua-lsp-emmy-enable-file-watchers t                   ; enabled default
+            )
+     (org :variables
+          org-enable-github-support t)
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode
             c-c++-adopt-subprojects t
@@ -50,23 +65,7 @@ This function should only modify configuration layer settings."
             c-c++-enable-google-style t
             c-c++-backend 'lsp-clangd
             c-c++-lsp-enable-semantic-highlight 'rainbow
-            lsp-clients-clangd-executable "/usr/local/opt/llvm/bin/clangd"
-            )
-      (lua :variables
-           lua-backend nil
-      ;;   lua-lsp-emmy-jar-path "~/.emacs.d/EmmyLua-LS-all.jar" ; default path
-      ;;   lua-lsp-emmy-java-path "java"                         ; default path
-      ;;   lua-lsp-emmy-enable-file-watchers t                   ; enabled default
-            )
-     emacs-lisp
-     helm
-     markdown
-     cmake
-     multiple-cursors
-     (org :variables
-          org-enable-github-support t)
-     treemacs
-     git
+            lsp-clients-clangd-executable "/usr/local/opt/llvm/bin/clangd")
      (lsp :variables
           lsp-enable-indentation nil)
      ;; better-defaults
@@ -498,10 +497,11 @@ This function is called immediately after `dotspacemacs/init', before layer
 configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
-  (setq configuration-layer-elpa-archives
-    '(("melpa-cn" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
-      ("org-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
-      ("gnu-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")))
+    ;; if use master branch, switch layer-elpa to layer--elpa
+    (setq configuration-layer-elpa-archives
+          '(("melpa-cn" . "http://elpa.emacs-china.org/melpa/")
+            ("org-cn"   . "http://elpa.emacs-china.org/org/")
+            ("gnu-cn"   . "http://elpa.emacs-china.org/gnu/")))
   )
 
 (defun dotspacemacs/user-load ()
