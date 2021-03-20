@@ -42,32 +42,7 @@ This function should only modify configuration layer settings."
      git
      emacs-lisp
      helm
-     markdown
-     cmake
-     multiple-cursors
-     treemacs
-     vimscript
-     javascript
-     (lua :variables
-          lua-backend nil
-      ;;  lua-lsp-emmy-jar-path "~/.emacs.d/EmmyLua-LS-all.jar" ; default path
-      ;;  lua-lsp-emmy-java-path "java"                         ; default path
-      ;;  lua-lsp-emmy-enable-file-watchers t                   ; enabled default
-            )
-     (org :variables
-          org-enable-github-support t)
-     (c-c++ :variables
-            c-c++-default-mode-for-headers 'c++-mode
-            c-c++-adopt-subprojects t
-            c-c++-enable-clang-support t
-            c-c++-enable-clang-format-on-save t
-            c-c++-enable-google-newline t
-            c-c++-enable-google-style t
-            c-c++-backend 'lsp-clangd
-            c-c++-lsp-enable-semantic-highlight 'rainbow
-            lsp-clients-clangd-executable "/usr/local/opt/llvm/bin/clangd")
-     (lsp :variables
-          lsp-enable-indentation nil)
+     kirakuiin
      ;; better-defaults
      ;; (shell :variables
      ;;        shell-default-height 30
@@ -517,12 +492,6 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
-  (setq-default evil-escape-key-sequence "jk")
-  (setq-default lsp-restart 'auto-restart)
-  (setq-default gc-cons-threshold 10000000);
-  ;; setting of c++ indent
-  ;; (setq-default indent-tabs-mode nil)
-  ;; (setq-default c-basic-offset 4)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
