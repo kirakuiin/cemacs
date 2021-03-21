@@ -19,12 +19,23 @@
     treemacs
     vimscript
     javascript
+    (ipython-notebook :variables
+                      ein-backend 'jupyter)
+    (python :variables
+            python-backend 'lsp
+            python-lsp-server 'pyright
+            python-test-runner 'pytest
+            python-formatter 'yapf
+            python-format-on-save t
+            python-save-before-test nil
+            python-fill-column 80
+            python-sort-imports-on-save t
+            )
     (lua :variables
-         lua-backend nil
-         ;;  lua-lsp-emmy-jar-path "~/.emacs.d/EmmyLua-LS-all.jar" ; default path
-         ;;  lua-lsp-emmy-java-path "java"                         ; default path
-         ;;  lua-lsp-emmy-enable-file-watchers t                   ; enabled default
-         )
+         lua-backend 'lsp
+         lua-lsp-server 'lua-language-server
+         lsp-clients-lua-language-server-bin "/Users/lambda/lua-language-server/bin/macOS/lua-language-server"
+         lsp-clients-lua-language-server-main-location "/Users/lambda/lua-language-server/main.lua")
     (org :variables
          org-enable-github-support t)
     (c-c++ :variables
@@ -38,7 +49,9 @@
            c-c++-lsp-enable-semantic-highlight 'rainbow
            lsp-clients-clangd-executable "/usr/local/opt/llvm/bin/clangd")
     (lsp :variables
-         lsp-enable-indentation nil)
+         lsp-enable-indentation nil
+         lsp-enable-file-watchers nil
+         )
     )
   )
 
