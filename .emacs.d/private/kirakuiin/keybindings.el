@@ -8,3 +8,8 @@
 ;; This file is not part of GNU Emacs.
 ;;
 ;;; License: GPLv3
+
+;; org-mode映射
+(spacemacs/set-leader-keys-for-major-mode 'org-mode
+                                          "C-d" 'evil-insert-digraph
+                                          )

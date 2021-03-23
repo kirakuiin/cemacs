@@ -27,4 +27,4 @@ file.
 
 | Key Binding | Description    |
 |-------------+----------------|
-| ~SPC x x x~ | Does thing01   |
+| ~SPC m C-d~ | 插入digraph字符 |
