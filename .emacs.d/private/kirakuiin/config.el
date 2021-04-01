@@ -14,21 +14,16 @@
 (setq-default gc-cons-threshold 10000000);
 (setq-default python-indent-offset 4)
 (setq-default python-indent 4)
-;; Python Hook
-(add-hook 'python-mode-hook
-          (message "python-mode-hook...")
-          (lambda ()
-            (setq indent-tabs-mode nil
-                  tab-width 4)))
-;; Org Hook
+
+;; Org
+
+;;;; Org Hook
 (add-hook 'org-mode-hook
           (lambda ()
             (message "org-mode-hook...")
             (setq org-link-search-must-match-exact-headline nil ;; org文件链接跳转不再仅匹配标题
                   )))
 
-;; setting of c++ indent
-;; (setq-default indent-tabs-mode nil)
-;; (setq-default c-basic-offset 4)
+;; C++
 
 (message "kirakuiin config.el loaded")

@@ -10,6 +10,9 @@
 ;;; License: GPLv3
 
 ;; org-mode映射
+(spacemacs/declare-prefix-for-mode 'org-mode "mk" "kiramap")
+
 (spacemacs/set-leader-keys-for-major-mode 'org-mode
-                                          "C-d" 'evil-insert-digraph
+                                          "kd" 'evil-insert-digraph
+                                          "kr" 'org-refile
                                           )
