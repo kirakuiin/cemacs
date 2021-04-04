@@ -15,10 +15,11 @@
     )
   )
 
-(defun kirakuiin/init-org-depend ()
+(defun kirakuiin/init-org-edna()
   (use-package org-edna
     :defer t
     :init
+    (org-edna-mode)
     ))
 
 ;;; packages.el ends here
