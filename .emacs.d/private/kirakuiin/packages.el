@@ -18,6 +18,7 @@
 (defun kirakuiin/init-org-depend ()
   (use-package org-edna
     :defer t
+    :init
     ))
 
 ;;; packages.el ends here
