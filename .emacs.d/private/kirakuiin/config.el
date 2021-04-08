@@ -37,28 +37,16 @@
                   ;; org-enforce-todo-dependencies t ;; 已用edna代替
                   org-enforce-todo-checkbox-dependencies t ;; 子选框未完成任务无法完成
                   )
-
-            (add-to-list 'org-agenda-custom-commands
-                         '("b" "Today's Deadline"
-                           ((agenda ""
-                                    ((org-agenda-span 'day)
-                                     (org-agenda-skip-function '(kirakuiin/org-agenda-skip-deadline-if-not-today))
-                                     (org-agenda-entry-types '(:deadline))
-                                     )))
-                           )
-                         )
+            ;;;; Org Agenda Commmand
+            (custom-set-variables '(org-agenda-custom-commands
+                                     '(("b" "Today's Deadline"
+                                        ((agenda ""
+                                                 ((org-agenda-span 'day)
+                                                  (org-agenda-skip-function '(kirakuiin/org-agenda-skip-deadline-if-not-today))
+                                                  (org-agenda-entry-types '(:deadline))
+                                                  )))))))
             (require 'org-habit)
             ))
-
-;;;; Org Agenda Commmand
-(custom-set-variables '(org-agenda-custom-commands
-                          '(("b" "Today's Deadline"
-                            ((agenda ""
-                                     ((org-agenda-span 'day)
-                                      (org-agenda-skip-function '(kirakuiin/org-agenda-skip-deadline-if-not-today))
-                                      (org-agenda-entry-types '(:deadline))
-                                      )))))))
-
 
 ;; C++
 
