@@ -22,4 +22,6 @@
     (org-edna-mode)
     ))
 
+(message "kirakuiin packages.el loaded")
+
 ;;; packages.el ends here

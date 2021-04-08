@@ -16,3 +16,5 @@
                                           "kd" 'evil-insert-digraph
                                           "kr" 'org-refile
                                           )
+
+(message "kirakuiin keybindings.el loaded")

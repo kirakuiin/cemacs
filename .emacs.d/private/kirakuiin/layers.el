@@ -37,7 +37,12 @@
          lsp-clients-lua-language-server-bin "/Users/lambda/lua-language-server/bin/macOS/lua-language-server"
          lsp-clients-lua-language-server-main-location "/Users/lambda/lua-language-server/main.lua")
     (org :variables
-         org-enable-github-support t)
+         org-enable-github-support t
+         org-habit-graph-column 1
+         org-habit-preceding-days 6
+         org-habit-following-days 2
+         org-habit-show-all-today t
+         )
     (c-c++ :variables
            c-c++-default-mode-for-headers 'c++-mode
            c-c++-adopt-subprojects t
@@ -55,4 +60,5 @@
     )
   )
 
+(message "kirakuiin layers.el loaded")
 ;;; packages.el ends here
