@@ -9,13 +9,23 @@
 ;;
 ;;; License: GPLv3
 
+;; General
+
 (setq-default evil-escape-key-sequence "jk")
 (setq-default lsp-restart 'auto-restart)
 (setq-default gc-cons-threshold 10000000);
+
+;; Python
+
 (setq-default python-indent-offset 4)
 (setq-default python-indent 4)
 
 ;; Org
+
+;; Set org todo keyword face
+(setq org-todo-keyword-faces
+      '(("TODO" . org-warning) ("WAIT" . "orange")
+                               ("SCH" . "yellow") ("CANCELED" . "blue")))
 
 ;;;; Org Hook
 (add-hook 'org-mode-hook
