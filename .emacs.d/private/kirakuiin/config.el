@@ -39,12 +39,15 @@
                   )
             ;;;; Org Agenda Commmand
             (custom-set-variables '(org-agenda-custom-commands
-                                     '(("b" "Today's Deadline"
-                                        ((agenda ""
+                                     '(("b" "Today's Task"
+                                        (
+                                         (agenda ""
                                                  ((org-agenda-span 'day)
-                                                  (org-agenda-skip-function '(kirakuiin/org-agenda-skip-deadline-if-not-today))
-                                                  (org-agenda-entry-types '(:deadline))
-                                                  )))))))
+                                                  (org-agenda-entry-types '(:scheduled :deadline)) ;; 条目类型
+                                                  (org-agenda-skip-function '(kirakuiin/org-agenda-skip-ds-if-not-today)) ;; 跳过非本日议程
+                                                  (org-deadline-warning-days 0) ;; 不显示警告
+                                                  ))
+                                         )))))
             (require 'org-habit)
             ))
 

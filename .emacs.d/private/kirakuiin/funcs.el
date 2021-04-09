@@ -9,7 +9,7 @@
 ;;
 ;;; License: GPLv3
 
-(defun kirakuiin/org-agenda-skip-deadline-if-not-today ()
+(defun kirakuiin/org-agenda-skip-ds-if-not-today ()
   "If this function returns nil, the current match should not be skipped.
   Otherwise, the function must return a position from where the search
   should be continued."
@@ -19,9 +19,14 @@
             (time-to-days
               (org-time-string-to-time
                 (org-entry-get nil "DEADLINE"))))
+          (scheduled-day
+            (time-to-days
+              (org-time-string-to-time
+                (org-entry-get nil "SCHEDULED"))))
           (now (time-to-days (current-time))))
-      (and deadline-day
-           (not (= deadline-day now))
-           subtree-end))))
+      (cond ((= deadline-day now) nil)
+            ((= scheduled-day now) nil)
+            (t subtree-end))
+      )))
 
 (message "kirakuiin funcs.el loaded")
