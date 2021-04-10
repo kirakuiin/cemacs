@@ -47,7 +47,9 @@
                                                   (org-agenda-skip-function '(kirakuiin/org-agenda-skip-ds-if-not-today)) ;; 跳过非本日议程
                                                   (org-deadline-warning-days 0) ;; 不显示警告
                                                   ))
-                                         )))))
+                                         ))))
+                                  '(org-stuck-projects '("+LEVEL=2/-DONE-CANCELED" ("TODO" "SCH") ("future") ""))
+                                  )
             (require 'org-habit)
             ))
 
