@@ -15,6 +15,8 @@
 (spacemacs/set-leader-keys-for-major-mode 'org-mode
                                           "kd" 'evil-insert-digraph
                                           "kr" 'org-refile
+                                          "kc" 'org-columns
+                                          "ks" 'org-sort
                                           )
 
 (message "kirakuiin keybindings.el loaded")

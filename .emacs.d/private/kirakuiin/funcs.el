@@ -9,24 +9,37 @@
 ;;
 ;;; License: GPLv3
 
-(defun kirakuiin/org-agenda-skip-ds-if-not-today ()
-  "If this function returns nil, the current match should not be skipped.
-  Otherwise, the function must return a position from where the search
-  should be continued."
-  (ignore-errors
-    (let ((subtree-end (save-excursion (org-end-of-subtree t)))
-          (deadline-day
-            (time-to-days
-              (org-time-string-to-time
-                (org-entry-get nil "DEADLINE"))))
-          (scheduled-day
-            (time-to-days
-              (org-time-string-to-time
-                (org-entry-get nil "SCHEDULED"))))
-          (now (time-to-days (current-time))))
-      (cond ((= deadline-day now) nil)
-            ((= scheduled-day now) nil)
-            (t subtree-end))
-      )))
+(defun kirakuiin/org-agenda-skip-if-only-today (subtree conditions)
+  "Like org-agenda-skip-if, but only today's entry will be display"
+  (org-back-to-heading t)
+  (let* ((beg (point))
+         (end (if subtree (save-excursion (org-end-of-subtree t) (point))
+                (org-entry-end-position)))
+         (planning-end (if subtree end (line-end-position 2)))
+         (dead-entry (org-entry-get nil "DEADLINE"))
+         (sch-entry (org-entry-get nil "SCHEDULED"))
+         (deadline-day
+           (if dead-entry
+             (time-to-days
+               (org-time-string-to-time dead-entry))
+             nil))
+         (scheduled-day
+           (if sch-entry
+             (time-to-days
+               (org-time-string-to-time sch-entry))
+             nil))
+         (now (time-to-days (current-time)))
+         m)
+    (and
+      (and (or
+             (setq m (memq 'nottodo conditions))
+             (setq m (memq 'todo-unblocked conditions))
+             (setq m (memq 'nottodo-unblocked conditions))
+             (setq m (memq 'todo conditions)))
+             (or
+               (org-agenda-skip-if-todo m end)
+               (not (or (and deadline-day (= deadline-day now))
+                        (and scheduled-day (= scheduled-day now))))))
+      end)))
 
 (message "kirakuiin funcs.el loaded")

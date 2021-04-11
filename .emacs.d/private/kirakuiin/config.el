@@ -40,14 +40,14 @@
             ;;;; Org Agenda Commmand
             (custom-set-variables '(org-agenda-custom-commands
                                      '(("b" "Today's Task"
-                                        (
-                                         (agenda ""
+                                        ((agenda ""
                                                  ((org-agenda-span 'day)
                                                   (org-agenda-entry-types '(:scheduled :deadline)) ;; 条目类型
-                                                  (org-agenda-skip-function '(kirakuiin/org-agenda-skip-ds-if-not-today)) ;; 跳过非本日议程
+                                                  (org-agenda-skip-function '(kirakuiin/org-agenda-skip-if-only-today nil '(nottodo ("TODO"))))
                                                   (org-deadline-warning-days 0) ;; 不显示警告
-                                                  ))
-                                         ))))
+                                                  ))))
+                                       ("x" "All Done LEVEL=2 Task"
+                                        ((tags "+LEVEL=2/+DONE")))))
                                   '(org-stuck-projects '("+LEVEL=2/-DONE-CANCELED" ("TODO" "SCH") ("future") ""))
                                   )
             (require 'org-habit)
