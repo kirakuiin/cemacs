@@ -16,7 +16,7 @@
                                           "kd" 'evil-insert-digraph
                                           "kr" 'org-refile
                                           "kc" 'org-columns
-                                          "ks" 'org-sort
+                                          "ks" 'kirakuiin/org-sort-all-entries-by-todo
                                           )
 
 (message "kirakuiin keybindings.el loaded")

@@ -42,4 +42,21 @@
                         (and scheduled-day (= scheduled-day now))))))
       end)))
 
+(defun kirakuiin/org-sort-all-entries-by-todo ()
+  "Sort all top level entries in agenda files"
+  (interactive)
+  (org-map-entries
+    (lambda ()
+      (org-sort-entries nil ?o))
+    "+LEVEL=1+ITEM=\"Next Action\"" 'agenda)
+  (org-map-entries
+    (lambda ()
+      (org-sort-entries nil ?o))
+    "+LEVEL=1+ITEM=\"Appointment\"" 'agenda)
+  (org-map-entries
+    (lambda ()
+      (org-sort-entries nil ?o))
+    "+LEVEL=1+ITEM=\"Project\"" 'agenda)
+  )
+
 (message "kirakuiin funcs.el loaded")

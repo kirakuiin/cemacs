@@ -39,15 +39,16 @@
                   )
             ;;;; Org Agenda Commmand
             (custom-set-variables '(org-agenda-custom-commands
-                                     '(("b" "Today's Task"
+                                     '(("k" . "Kirakuiin commands")
+                                       ("kt" "Today's Task"
                                         ((agenda ""
                                                  ((org-agenda-span 'day)
                                                   (org-agenda-entry-types '(:scheduled :deadline)) ;; 条目类型
                                                   (org-agenda-skip-function '(kirakuiin/org-agenda-skip-if-only-today nil '(nottodo ("TODO"))))
-                                                  (org-deadline-warning-days 0) ;; 不显示警告
-                                                  ))))
-                                       ("x" "All Done LEVEL=2 Task"
-                                        ((tags "+LEVEL=2/+DONE")))))
+                                                  (org-deadline-warning-days 0))))) ;; 不显示警告
+                                       ("kd" "All Done LEVEL=2 Task"
+                                        ((tags "+LEVEL=2/+DONE"
+                                              ((org-agenda-span 'month)))))))
                                   '(org-stuck-projects '("+LEVEL=2/-DONE-CANCELED" ("TODO" "SCH") ("future") ""))
                                   )
             (require 'org-habit)
