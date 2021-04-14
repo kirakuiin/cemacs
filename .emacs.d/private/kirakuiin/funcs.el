@@ -59,4 +59,47 @@
     "+LEVEL=1+ITEM=\"Project\"" 'agenda)
   )
 
+(defun kirakuiin/org-custom-varibles ()
+  "custom org variables setting"
+  (custom-set-variables '(org-agenda-custom-commands       ;; Org Agenda Commmand
+                           '(("k" . "Kirakuiin commands")
+                             ("kt" "Today's Task"
+                              ((agenda ""
+                                       ((org-agenda-span 'day)
+                                        (org-agenda-entry-types '(:scheduled :deadline)) ;; 条目类型
+                                        (org-agenda-skip-function '(kirakuiin/org-agenda-skip-if-only-today nil '(nottodo ("TODO"))))
+                                        (org-deadline-warning-days 0))))) ;; 不显示警告
+                             ("kd" "All Done LEVEL=2 Task"
+                              ((tags "+LEVEL=2/+DONE"
+                                     ((org-agenda-span 'month)))))))
+                        '(org-stuck-projects '("+LEVEL=2/-DONE-CANCELED" ("TODO" "SCH") ("future") "")))
+  )
+
+(defun kirakuiin/org-pomodoro-finished-callback ()
+  "Start a new pomodoro after a rest"
+  (interactive)
+  (org-pomodoro)
+  )
+
+(defun kirakuiin/org-pomodoro-hooks-on-winnt ()
+  "Windows-nt alert is not work. attach some hooks to fix this"
+  (when (equal system-type 'windows-nt)
+    (progn
+      (add-hook 'org-pomodoro-finished-hook
+                (lambda () (org-notify "Rest for a while.")))
+      (add-hook 'org-pomodoro-started-hook
+                (lambda () (org-notify "Start pomodoro.")))
+      (add-hook 'org-pomodoro-short-break-finished-hook
+                (lambda ()
+                  (org-notify "Start pomodoro.")
+                  (kirakuiin/org-pomodoro-finished-callback)))
+      (add-hook 'org-pomodoro-long-break-finished-hook
+                (lambda ()
+                  (org-notify "Start pomodoro.")
+                  (kirakuiin/org-pomodoro-finished-callback)))
+      (message "pomodoro attach hook over")
+      )
+    )
+  )
+
 (message "kirakuiin funcs.el loaded")

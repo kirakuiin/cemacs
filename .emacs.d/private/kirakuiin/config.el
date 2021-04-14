@@ -41,25 +41,12 @@
             (setq org-link-search-must-match-exact-headline nil ;; org文件链接跳转不再仅匹配标题
                   ;; org-enforce-todo-dependencies t ;; 已用edna代替
                   org-enforce-todo-checkbox-dependencies t ;; 子选框未完成任务无法完成
-                  org-pomodoro-length 20
-                  org-pomodoro-short-break-length 3
-                  org-pomodoro-long-break-length 9
-                  org-pomodoro-play-sounds 1
+                  org-pomodoro-length 25
+                  org-pomodoro-short-break-length 5
+                  org-pomodoro-long-break-length 10
                   )
-            ;;;; Org Agenda Commmand
-            (custom-set-variables '(org-agenda-custom-commands
-                                     '(("k" . "Kirakuiin commands")
-                                       ("kt" "Today's Task"
-                                        ((agenda ""
-                                                 ((org-agenda-span 'day)
-                                                  (org-agenda-entry-types '(:scheduled :deadline)) ;; 条目类型
-                                                  (org-agenda-skip-function '(kirakuiin/org-agenda-skip-if-only-today nil '(nottodo ("TODO"))))
-                                                  (org-deadline-warning-days 0))))) ;; 不显示警告
-                                       ("kd" "All Done LEVEL=2 Task"
-                                        ((tags "+LEVEL=2/+DONE"
-                                              ((org-agenda-span 'month)))))))
-                                  '(org-stuck-projects '("+LEVEL=2/-DONE-CANCELED" ("TODO" "SCH") ("future") ""))
-                                  )
+            (kirakuiin/org-custom-varibles)
+            (kirakuiin/org-pomodoro-hooks-on-winnt)
             (require 'org-habit)
             ))
 
