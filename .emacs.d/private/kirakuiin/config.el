@@ -42,7 +42,7 @@
                   ;; org-enforce-todo-dependencies t ;; 已用edna代替
                   org-enforce-todo-checkbox-dependencies t ;; 子选框未完成任务无法完成
                   org-pomodoro-length 25
-                  org-pomodoro-short-break-length 5
+                  org-pomodoro-short-break-length 1
                   org-pomodoro-long-break-length 10
                   )
             (kirakuiin/org-custom-varibles)

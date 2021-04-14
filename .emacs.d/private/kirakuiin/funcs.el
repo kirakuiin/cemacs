@@ -9,6 +9,9 @@
 ;;
 ;;; License: GPLv3
 
+(defvar kirakuiin/org-pomodoro-pos-info nil
+  "When start a pomodoro, record buffer and point for restore context")
+
 (defun kirakuiin/org-agenda-skip-if-only-today (subtree conditions)
   "Like org-agenda-skip-if, but only today's entry will be display"
   (org-back-to-heading t)
@@ -75,11 +78,17 @@
                         '(org-stuck-projects '("+LEVEL=2/-DONE-CANCELED" ("TODO" "SCH") ("future") "")))
   )
 
-(defun kirakuiin/org-pomodoro-finished-callback ()
-  "Start a new pomodoro after a rest"
-  (interactive)
-  (org-pomodoro)
-  )
+(defun kirakuiin/org-pomodoro-restart-pomodoro ()
+  "Restart a pomodoro according to recorded buffer and point"
+  ;; TODO: check whether saved buffer is exist.
+  (when kirakuiin/org-pomodoro-pos-info
+    (let ((buffer-info (car kirakuiin/org-pomodoro-pos-info))
+          (point-info (cdr kirakuiin/org-pomodoro-pos-info)))
+      ;; Return to pomodoro start context and restart
+      (with-current-buffer buffer-info
+                           (goto-char point-info)
+                           (interactive)
+                           (org-pomodoro)))))
 
 (defun kirakuiin/org-pomodoro-hooks-on-winnt ()
   "Windows-nt alert is not work. attach some hooks to fix this"
@@ -88,15 +97,21 @@
       (add-hook 'org-pomodoro-finished-hook
                 (lambda () (org-notify "Rest for a while.")))
       (add-hook 'org-pomodoro-started-hook
-                (lambda () (org-notify "Start pomodoro.")))
+                (lambda ()
+                  (org-notify "Start pomodoro.")
+                  (let ((buffer-info (current-buffer))
+                        (point-info (point)))
+                    ;; Save buffer and point info
+                    (setq kirakuiin/org-pomodoro-pos-info (cons buffer-info point-info)))
+                  ))
       (add-hook 'org-pomodoro-short-break-finished-hook
                 (lambda ()
-                  (org-notify "Start pomodoro.")
-                  (kirakuiin/org-pomodoro-finished-callback)))
+                  (org-notify "Start pomodoro after short rest.")
+                  (kirakuiin/org-pomodoro-restart-pomodoro)))
       (add-hook 'org-pomodoro-long-break-finished-hook
                 (lambda ()
-                  (org-notify "Start pomodoro.")
-                  (kirakuiin/org-pomodoro-finished-callback)))
+                  (org-notify "Start pomodoro after long rest.")
+                  (kirakuiin/org-pomodoro-restart-pomodoro)))
       (message "pomodoro attach hook over")
       )
     )
