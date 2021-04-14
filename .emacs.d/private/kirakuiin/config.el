@@ -15,6 +15,9 @@
 (setq-default lsp-restart 'auto-restart)
 (setq-default gc-cons-threshold 10000000);
 
+;; Fix when evil-search broken cause evil-key-binding exception
+(add-hook 'minibuffer-exit-hook #'evil-ex-search-stop-session)
+
 ;; Python
 
 (setq-default python-indent-offset 4)
@@ -33,9 +36,15 @@
 (add-hook 'org-mode-hook
           (lambda ()
             (message "org-mode-hook...")
+            ;; Modeline setting
+            (spacemacs/toggle-mode-line-org-clock-on)
             (setq org-link-search-must-match-exact-headline nil ;; org文件链接跳转不再仅匹配标题
                   ;; org-enforce-todo-dependencies t ;; 已用edna代替
                   org-enforce-todo-checkbox-dependencies t ;; 子选框未完成任务无法完成
+                  org-pomodoro-length 20
+                  org-pomodoro-short-break-length 3
+                  org-pomodoro-long-break-length 9
+                  org-pomodoro-play-sounds 1
                   )
             ;;;; Org Agenda Commmand
             (custom-set-variables '(org-agenda-custom-commands

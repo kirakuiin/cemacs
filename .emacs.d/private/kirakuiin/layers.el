@@ -42,6 +42,7 @@
          org-habit-preceding-days 6
          org-habit-following-days 2
          org-habit-show-all-today t
+         org-clock-sound t
          )
     (c-c++ :variables
            c-c++-default-mode-for-headers 'c++-mode
