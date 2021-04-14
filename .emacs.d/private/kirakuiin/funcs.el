@@ -80,19 +80,19 @@
 
 (defun kirakuiin/org-pomodoro-restart-pomodoro ()
   "Restart a pomodoro according to recorded buffer and point"
-  ;; TODO: check whether saved buffer is exist.
   (when kirakuiin/org-pomodoro-pos-info
     (let ((buffer-info (car kirakuiin/org-pomodoro-pos-info))
           (point-info (cdr kirakuiin/org-pomodoro-pos-info)))
       ;; Return to pomodoro start context and restart
-      (with-current-buffer buffer-info
-                           (goto-char point-info)
-                           (interactive)
-                           (org-pomodoro)))))
+      (and (gnus-buffer-exists-p buffer-info)
+           (with-current-buffer buffer-info
+                                (goto-char point-info)
+                                (interactive)
+                                (org-pomodoro))))))
 
 (defun kirakuiin/org-pomodoro-hooks-on-winnt ()
-  "Windows-nt alert is not work. attach some hooks to fix this"
-  (when (equal system-type 'windows-nt)
+  "Some system alert is not work. attach some hooks to fix this"
+  (when (or (equal system-type 'windows-nt) (equal system-type 'darwin))
     (progn
       (add-hook 'org-pomodoro-finished-hook
                 (lambda () (org-notify "Rest for a while.")))
