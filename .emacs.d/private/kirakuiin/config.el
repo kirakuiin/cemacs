@@ -44,6 +44,9 @@
                   org-pomodoro-length 25
                   org-pomodoro-short-break-length 5
                   org-pomodoro-long-break-length 10
+                  org-archive-location (concat "archive/archive-"
+                                               (format-time-string "%Y" (current-time))
+                                               ".org_archive::")
                   )
             (kirakuiin/org-custom-varibles)
             (kirakuiin/org-pomodoro-hooks-on-winnt)

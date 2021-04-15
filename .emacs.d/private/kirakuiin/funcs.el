@@ -74,8 +74,13 @@
                                         (org-deadline-warning-days 0))))) ;; 不显示警告
                              ("kd" "All Done LEVEL=2 Task"
                               ((tags "+LEVEL=2/+DONE"
-                                     ((org-agenda-span 'month)))))))
-                        '(org-stuck-projects '("+LEVEL=2/-DONE-CANCELED" ("TODO" "SCH") ("future") "")))
+                                     ((org-agenda-span 'month)))))
+                             ("ka" "All Archive LEVEL=2 Task"
+                              ((tags "ARCHIVE+LEVEL=2"
+                                     ((org-agenda-archives-mode t)
+                                      (org-agenda-span 'month)))))))
+                        '(org-stuck-projects '("+LEVEL=2/-DONE-CANCELED" ("TODO" "SCH") ("future") ""))
+                        '(org-refile-targets '((org-agenda-files :level . 1))))
   )
 
 (defun kirakuiin/org-pomodoro-restart-pomodoro ()
@@ -112,6 +117,11 @@
                 (lambda ()
                   (org-notify "Start pomodoro after long rest.")
                   (kirakuiin/org-pomodoro-restart-pomodoro)))
+      (add-hook 'org-pomodoro-killed-hook
+                (lambda ()
+                  (org-notify "Kill current pomodoro.")
+                  (setq kirakuiin/org-pomodoro-pos-info nil)
+                  ))
       (message "pomodoro attach hook over")
       )
     )
