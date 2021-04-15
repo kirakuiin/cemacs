@@ -42,6 +42,8 @@
          org-habit-preceding-days 6
          org-habit-following-days 2
          org-habit-show-all-today t
+         org-directory "~/org/capture"
+         org-default-notes-file (concat org-directory "/eureka.org")
          )
     (c-c++ :variables
            c-c++-default-mode-for-headers 'c++-mode
