@@ -128,7 +128,20 @@
   )
 
 (defun kirakuiin/org-capture-templates(&optional type)
-  "** %^{TODO}p%^{PRIORITY}p%? %^g"
+  "According to the type, return curresponding templates
+   type are 'default, 'schedule, 'deadline, 'sche&dead"
+  (let* ((arg (or type 'default))
+         (default "** %^{TODO}p%^{PRIORITY}p%? %^g")
+         (schedule (concat default "\nSCHEDULED: %T"))
+         (deadline (concat default "\nDEADLINE: %T"))
+         (sche&dead (concat schedule " DEADLINE: %T"))
+         (templates (list (cons 'default default) (cons 'schedule schedule)
+                          (cons 'deadline deadline) (cons 'sche&dead sche&dead)))
+         (princ templates)
+         (result (cdr (assoc type templates))))
+    (princ templates)
+    (or result default)
+    )
   )
 
 (message "kirakuiin funcs.el loaded")

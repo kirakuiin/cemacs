@@ -47,15 +47,19 @@
                   org-archive-location (concat "archive/archive-"
                                                (format-time-string "%Y" (current-time))
                                                ".org_archive::")
-                  org-capture-templates '(("e" "Eureka" entry (file+headline "" "Eureka")
-                                           (function kirakuiin/org-capture-templates)
-                                           :clock-resume :kill-buffer)
-                                          ("w" "Work" entry (file+headline "~/org/gtd/work.org" "Inbox")
-                                           (function kirakuiin/org-capture-templates)
-                                           :clock-resume :kill-buffer)
-                                          ("l" "Live" entry (file+headline "~/org/gtd/live.org" "InBox")
-                                           (function kirakuiin/org-capture-templates)
-                                           :clock-resume :kill-buffer)
+                  org-capture-templates '(("t" "Task")
+                                          ("te" "Eureka" entry (file+headline "" "Eureka")
+                                           (function
+                                             (lambda () (kirakuiin/org-capture-templates)))
+                                           :clock-resume t :kill-buffer t)
+                                          ("tw" "Work" entry (file+headline "~/org/gtd/work.org" "Inbox")
+                                           (function
+                                             (lambda () (kirakuiin/org-capture-templates)))
+                                           :clock-resume t :kill-buffer t)
+                                          ("tl" "Live" entry (file+headline "~/org/gtd/live.org" "InBox")
+                                           (function
+                                             (lambda () (kirakuiin/org-capture-templates)))
+                                           :clock-resume t :kill-buffer t)
                                           )
                   )
             (kirakuiin/org-custom-varibles)
