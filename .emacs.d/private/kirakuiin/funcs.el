@@ -127,4 +127,8 @@
     )
   )
 
+(defun kirakuiin/org-capture-templates(&optional type)
+  "** %^{TODO}p%^{PRIORITY}p%? %^g"
+  )
+
 (message "kirakuiin funcs.el loaded")

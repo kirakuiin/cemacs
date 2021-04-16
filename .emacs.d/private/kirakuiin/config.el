@@ -27,7 +27,7 @@
 
 ;; Set org todo keyword face
 (setq org-todo-keyword-faces
-      '(("TODO" . "#dc752f") ("WAIT" . "#2d9574")
+      '(("TODO" . "#dc752f") ("WAIT" . "#FFFF60")
                              ("SCH" . "#4f97d7")
                              ("DONE" . "#86dc2f")
                              ("CANCELED" . "#f2241f")))
@@ -47,6 +47,16 @@
                   org-archive-location (concat "archive/archive-"
                                                (format-time-string "%Y" (current-time))
                                                ".org_archive::")
+                  org-capture-templates '(("e" "Eureka" entry (file+headline "" "Eureka")
+                                           (function kirakuiin/org-capture-templates)
+                                           :clock-resume :kill-buffer)
+                                          ("w" "Work" entry (file+headline "~/org/gtd/work.org" "Inbox")
+                                           (function kirakuiin/org-capture-templates)
+                                           :clock-resume :kill-buffer)
+                                          ("l" "Live" entry (file+headline "~/org/gtd/live.org" "InBox")
+                                           (function kirakuiin/org-capture-templates)
+                                           :clock-resume :kill-buffer)
+                                          )
                   )
             (kirakuiin/org-custom-varibles)
             (kirakuiin/org-pomodoro-hooks-on-winnt)
