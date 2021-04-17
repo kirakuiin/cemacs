@@ -47,18 +47,35 @@
                   org-archive-location (concat "archive/archive-"
                                                (format-time-string "%Y" (current-time))
                                                ".org_archive::")
-                  org-capture-templates '(("t" "Task")
-                                          ("te" "Eureka" entry (file+headline "" "Eureka")
+                  org-capture-templates '(("e" "Eureka" entry (file+headline "" "Inbox")
                                            (function
                                              (lambda () (kirakuiin/org-capture-templates)))
                                            :clock-resume t :kill-buffer t)
-                                          ("tw" "Work" entry (file+headline "~/org/gtd/work.org" "Inbox")
+                                          ("w" "Work")
+                                          ("we" "Eureka" entry (file+headline "~/org/gtd/work.org" "Inbox")
                                            (function
-                                             (lambda () (kirakuiin/org-capture-templates)))
+                                             (lambda () (kirakuiin/org-capture-templates 'task)))
                                            :clock-resume t :kill-buffer t)
-                                          ("tl" "Live" entry (file+headline "~/org/gtd/live.org" "InBox")
+                                          ("wt" "Task" entry (file+headline "~/org/gtd/work.org" "Next Action")
                                            (function
-                                             (lambda () (kirakuiin/org-capture-templates)))
+                                             (lambda () (kirakuiin/org-capture-templates 'schedule)))
+                                           :clock-resume t :kill-buffer t)
+                                          ("wp" "Project" entry (file+headline "~/org/gtd/work.org" "Project")
+                                           (function
+                                             (lambda () (kirakuiin/org-capture-templates 'project)))
+                                           :clock-resume t :kill-buffer t)
+                                          ("l" "Live")
+                                          ("le" "Eureka" entry (file+headline "~/org/gtd/live.org" "Inbox")
+                                           (function
+                                             (lambda () (kirakuiin/org-capture-templates 'task)))
+                                           :clock-resume t :kill-buffer t)
+                                          ("lt" "Eureka" entry (file+headline "~/org/gtd/live.org" "Next Action")
+                                           (function
+                                             (lambda () (kirakuiin/org-capture-templates 'schedule)))
+                                           :clock-resume t :kill-buffer t)
+                                          ("lp" "Eureka" entry (file+headline "~/org/gtd/live.org" "Project")
+                                           (function
+                                             (lambda () (kirakuiin/org-capture-templates 'project)))
                                            :clock-resume t :kill-buffer t)
                                           )
                   )

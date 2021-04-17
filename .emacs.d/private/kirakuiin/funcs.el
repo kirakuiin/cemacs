@@ -129,18 +129,29 @@
 
 (defun kirakuiin/org-capture-templates(&optional type)
   "According to the type, return curresponding templates
-   type are 'default, 'schedule, 'deadline, 'sche&dead"
-  (let* ((arg (or type 'default))
-         (default "** %^{TODO}p%^{PRIORITY}p%? %^g")
-         (schedule (concat default "\nSCHEDULED: %T"))
-         (deadline (concat default "\nDEADLINE: %T"))
-         (sche&dead (concat schedule " DEADLINE: %T"))
-         (templates (list (cons 'default default) (cons 'schedule schedule)
-                          (cons 'deadline deadline) (cons 'sche&dead sche&dead)))
-         (princ templates)
+   type are:
+   'eureka : Record some idea with record time
+   'task : A Complete task entry
+   'schedule : A task with SCHEDULED property
+   'deadline : A task with DEADLINE property
+   'sche&dead : A task with above two property
+   'project : A Task with sub task"
+  (let* ((arg (or type 'eureka))
+         (eureka "** %^{HEADLINE|Eureka}\n:PROPERTIES:\n:RECORD_TIME: %U\n:END:")
+         (task "** %^{TODO}p%^{PRIORITY}p%^{HEADLINE|Task} %^g")
+         (schedule (concat task "\nSCHEDULED: %^{SCHEDULED}T"))
+         (deadline (concat task "\nDEADLINE: %^{DEADLINE}T"))
+         (sche&dead (concat schedule " DEADLINE: %^{DEADLINE}T"))
+         (project (concat sche&dead "\n:PROPERTIES:\n:BLOCKER: children\n:END:\
+                          \n*** TODO FIRST-CHILD\n:PROPERTIES:\
+                          \n:TRIGGER:  next-sibling todo!(TODO) scheduled!(\"++0h\") chain!(\"TRIGGER\")\n:END:\
+                          \n*** WAIT LAST-CHILD\n:PROPERTIES:\
+                          \n:TRIGGER+: parent todo!(DONE)\n:END:"))
+         (templates (list (cons 'eureka eureka) (cons 'schedule schedule)
+                          (cons 'deadline deadline) (cons 'sche&dead sche&dead)
+                          (cons 'task task) (cons 'project project)))
          (result (cdr (assoc type templates))))
-    (princ templates)
-    (or result default)
+    (or result eureka)
     )
   )
 
