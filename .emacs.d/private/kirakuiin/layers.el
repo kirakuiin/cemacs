@@ -44,6 +44,8 @@
          org-habit-show-all-today t
          org-directory "~/org/capture"
          org-default-notes-file (concat org-directory "/eureka.org")
+         org-attach-method 'ln
+         org-attach-store-link-p 2 ;; 0.don't store 1.origin link, 2.attachmentlink
          )
     (c-c++ :variables
            c-c++-default-mode-for-headers 'c++-mode
