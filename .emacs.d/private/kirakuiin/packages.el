@@ -10,17 +10,16 @@
 ;;; License: GPLv3
 
 (defconst kirakuiin-packages
-  '(
-    org-edna ;; org todo高级依赖库
-    )
-  )
+          '(
+            org-edna ;; org todo高级依赖库
+            )
+          )
 
 (defun kirakuiin/init-org-edna()
   (use-package org-edna
-    :defer t
-    :init
-    (org-edna-mode)
-    ))
+               :defer t
+               :init
+               (org-edna-mode)))
 
 (message "kirakuiin packages.el loaded")
 

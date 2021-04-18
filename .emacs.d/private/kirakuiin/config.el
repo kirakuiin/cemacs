@@ -14,14 +14,16 @@
 (setq-default evil-escape-key-sequence "jk")
 (setq-default lsp-restart 'auto-restart)
 (setq-default gc-cons-threshold 10000000);
-
-;; Fix when evil-search broken cause evil-key-binding exception
-(add-hook 'minibuffer-exit-hook #'evil-ex-search-stop-session)
+(setq-default calendar-longitude 113.51221908543394)
+(setq-default calendar-latitude 23.15287104087724)
+(setq-default calendar-holidays '(())) ;; block all holidays
 
 ;; Python
 
-(setq-default python-indent-offset 4)
-(setq-default python-indent 4)
+(add-hook 'python-mode-hook
+          (lambda ()
+            (setq python-indent-offset 4
+                  python-indent 4)))
 
 ;; Org
 
@@ -47,7 +49,7 @@
                   org-archive-location (concat "archive/archive-"
                                                (format-time-string "%Y" (current-time))
                                                ".org_archive::")
-                  org-capture-templates '(("e" "Eureka" entry (file+headline "" "Inbox")
+                  org-capture-templates '(("e" "Eureka" entry (file+headline "~/org/capture/eureka.org" "Inbox")
                                            (function
                                              (lambda () (kirakuiin/org-capture-templates)))
                                            :clock-resume t :kill-buffer t :clock-keep nil)
@@ -78,11 +80,11 @@
                                              (lambda () (kirakuiin/org-capture-templates 'project)))
                                            :clock-resume t :kill-buffer t :clock-keep nil)
                                           )
-                  )
-            (kirakuiin/org-custom-varibles)
-            (kirakuiin/org-pomodoro-hooks-on-winnt)
-            (require 'org-habit)
-            ))
+            )
+          (kirakuiin/org-custom-varibles)
+          (kirakuiin/org-pomodoro-hooks-on-winnt)
+          (require 'org-habit)
+          ))
 
 ;; C++
 
