@@ -12,6 +12,7 @@
 (defconst kirakuiin-packages
           '(
             org-edna ;; org todo高级依赖库
+            cal-china-x ;; org 中文日历
             )
           )
 
@@ -20,6 +21,10 @@
                :defer t
                :init
                (org-edna-mode)))
+
+(defun kirakuiin/init-cal-china-x()
+  (use-package cal-china-x
+    :defer t))
 
 (message "kirakuiin packages.el loaded")
 

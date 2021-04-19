@@ -16,7 +16,34 @@
 (setq-default gc-cons-threshold 10000000);
 (setq-default calendar-longitude 113.51221908543394)
 (setq-default calendar-latitude 23.15287104087724)
-(setq-default calendar-holidays '(())) ;; block all holidays
+
+(defvar kirakuiin/holidays
+  '(;;公历节日
+    (holiday-fixed 1 1 "元旦")
+    (holiday-fixed 2 14 "情人节")
+    (holiday-fixed 3 8 "妇女节")
+    (holiday-fixed 3 14 "白色情人节")
+    (holiday-fixed 4 1 "愚人节")
+    (holiday-fixed 5 1 "劳动节")
+    (holiday-float 5 0 2 "母亲节")
+    (holiday-fixed 6 1 "儿童节")
+    (holiday-float 6 0 3 "父亲节")
+    (holiday-fixed 9 10 "教师节")
+    (holiday-fixed 10 1 "国庆节")
+    (holiday-fixed 12 25 "圣诞节")
+    ;; 农历节日
+    (holiday-lunar 1 1 "春节" 0)
+    (holiday-lunar 1 2 "春节" 0)
+    (holiday-lunar 1 3 "春节" 0)
+    (holiday-lunar 1 15 "元宵节" 0)
+    (holiday-solar-term "清明" "清明节")
+    (holiday-lunar 5 5 "端午节" 0)
+    (holiday-lunar 8 15 "中秋节" 0)
+    ;; 生日 -- 家人,朋友
+    (holiday-lunar 12 12 "生日" 0))
+  "kirakuiin's holiday"
+  )
+(setq-default calendar-holidays kirakuiin/holidays) ;; block all other holidays
 
 ;; Python
 
