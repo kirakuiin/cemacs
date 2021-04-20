@@ -49,6 +49,13 @@
          org-agenda-include-diary t
          org-agenda-diary-file "~/org/res/config/diary"
          diary-file "~/org/res/config/diary"
+         org-agenda-start-with-follow-mode nil ;; 关闭自动跟随, F开启
+         org-link-search-must-match-exact-headline nil ;; org文件链接跳转不再仅匹配标题
+         ;; org-enforce-todo-dependencies t ;; 已用edna代替
+         org-enforce-todo-checkbox-dependencies t ;; 子选框未完成任务无法完成
+         org-pomodoro-length 25
+         org-pomodoro-short-break-length 5
+         org-pomodoro-long-break-length 10
          )
     (c-c++ :variables
            c-c++-default-mode-for-headers 'c++-mode
