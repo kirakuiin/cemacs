@@ -40,7 +40,8 @@
     (holiday-lunar 5 5 "端午节" 0)
     (holiday-lunar 8 15 "中秋节" 0)
     ;; 生日 -- 家人,朋友
-    (holiday-lunar 12 12 "生日" 0))
+    (holiday-lunar 12 12 "生日" 0)
+    (holiday-lunar 11 17 "母亲生日" 0))
   "kirakuiin's holiday"
   )
 (setq-default calendar-holidays kirakuiin/holidays) ;; block all other holidays
@@ -76,6 +77,10 @@
                   org-archive-location (concat "archive/archive-"
                                                (format-time-string "%Y" (current-time))
                                                ".org_archive::")
+                  ;; org-agenda-category-icon-alist `(("work" ,(concat (kirakuiin/get-layer-path) "img/work_icon.png")
+                  ;;                                   nil nil :ascent center :height 15 :width 15)
+                  ;;                                  ("live" ,(concat (kirakuiin/get-layer-path) "img/live_icon.png")
+                  ;;                                   nil nil :ascent center :height 15 :width 15))
                   org-capture-templates '(("e" "Eureka" entry (file+headline "~/org/capture/eureka.org" "Inbox")
                                            (function
                                              (lambda () (kirakuiin/org-capture-templates)))

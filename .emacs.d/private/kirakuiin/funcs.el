@@ -12,6 +12,10 @@
 (defvar kirakuiin/org-pomodoro-pos-info nil
   "When start a pomodoro, record buffer and point for restore context")
 
+(defun kirakuiin/get-layer-path ()
+  "Get the absolute path of this layer"
+  (configuration-layer/get-layer-path 'kirakuiin))
+
 (defun kirakuiin/org-agenda-skip-if-only-today (subtree conditions)
   "Like org-agenda-skip-if, but only today's entry will be display"
   (org-back-to-heading t)
