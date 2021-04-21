@@ -47,8 +47,6 @@
          org-attach-method 'ln
          org-attach-store-link-p 2 ;; 0.don't store 1.origin link, 2.attachmentlink
          org-agenda-include-diary t
-         org-agenda-diary-file "~/org/res/config/diary"
-         diary-file "~/org/res/config/diary"
          org-agenda-start-with-follow-mode nil ;; 关闭自动跟随, F开启
          org-link-search-must-match-exact-headline nil ;; org文件链接跳转不再仅匹配标题
          ;; org-enforce-todo-dependencies t ;; 已用edna代替

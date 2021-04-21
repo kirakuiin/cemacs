@@ -71,6 +71,9 @@
             (setq org-archive-location (concat "archive/archive-"
                                                (format-time-string "%Y" (current-time))
                                                ".org_archive::")
+
+                  org-agenda-diary-file (concat (kirakuiin/get-layer-path) "res/diary")
+                  diary-file (concat (kirakuiin/get-layer-path) "res/diary")
                   ;; org-agenda-category-icon-alist `(("work" ,(concat (kirakuiin/get-layer-path) "img/work_icon.png")
                   ;;                                   nil nil :ascent center :height 15 :width 15)
                   ;;                                  ("live" ,(concat (kirakuiin/get-layer-path) "img/live_icon.png")

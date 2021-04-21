@@ -75,7 +75,9 @@
                                        ((org-agenda-span 'day)
                                         (org-agenda-entry-types '(:scheduled :deadline)) ;; 条目类型
                                         (org-agenda-skip-function '(kirakuiin/org-agenda-skip-if-only-today nil '(nottodo ("TODO"))))
-                                        (org-deadline-warning-days 0))))) ;; 不显示警告
+                                        (org-deadline-warning-days 0)))) ;; 不显示警告
+                              nil
+                              ("~/agenda-view.ics")) ;; 导出文件地址
                              ("kd" "All Done LEVEL=2 Task"
                               ((tags "+LEVEL=2/+DONE"
                                      ((org-agenda-span 'month)))))

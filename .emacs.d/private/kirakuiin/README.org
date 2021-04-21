@@ -8,14 +8,14 @@
   - [[#features][Features:]]
 - [[#install][Install]]
 - [[#key-bindings][Key bindings]]
+  - [[#org-mode][org-mode]]
+  - [[#org-agenda][org-agenda]]
 
 * Description
-This layer adds support for something.
+This layer is kirakuiin's private layer. It contains a lot of personal config.
 
 ** Features:
-  - Autocomplete
-  - Lint
-  - Refactor
+  - Org-mode config
   - ...
 
 * Install
@@ -25,6 +25,19 @@ file.
 
 * Key bindings
 
-| Key Binding | Description    |
-|-------------+----------------|
-| ~SPC m C-d~ | 插入digraph字符 |
+** org-mode
+   | Key Binding | Description                  |
+   |-------------+------------------------------|
+   | ~, k d~     | insert digraph characters    |
+   | ~, k r~     | org refile                   |
+   | ~, k s~     | org sort all level=2 entries |
+   | ~, k c~     | org column mode              |
+
+** org-agenda
+   | Key Binding | Description                                   |
+   |-------------+-----------------------------------------------|
+   | ~, a k t~   | show today's todo entries                     |
+   | ~, a k d~   | show all level=2 entries and TODO=DONE        |
+   | ~, a k a~   | show all level=2 entries and have ARCHIVE tag |
+
+
