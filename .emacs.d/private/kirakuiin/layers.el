@@ -54,6 +54,9 @@
          org-pomodoro-length 25
          org-pomodoro-short-break-length 5
          org-pomodoro-long-break-length 10
+         org-pretty-entities t  ;; 默认显示上下标
+         org-pretty-entities-include-sub-superscripts t
+         org-use-sub-superscripts '{} ;; 强制上下标语法加大括号
          )
     (c-c++ :variables
            c-c++-default-mode-for-headers 'c++-mode

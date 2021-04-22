@@ -11,9 +11,11 @@
 
 ;; org-mode映射
 (spacemacs/declare-prefix-for-mode 'org-mode "mk" "kiramap")
+(spacemacs/declare-prefix-for-mode 'org-mode "mkb" "special symbols")
 
 (spacemacs/set-leader-keys-for-major-mode 'org-mode
-                                          "kd" 'evil-insert-digraph
+                                          "kbd" 'evil-insert-digraph
+                                          "kbh" 'org-entities-help
                                           "kr" 'org-refile
                                           "kc" 'org-columns
                                           "ks" 'kirakuiin/org-sort-all-entries-by-todo

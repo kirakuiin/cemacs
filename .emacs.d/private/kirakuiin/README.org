@@ -28,7 +28,8 @@ file.
 ** org-mode
    | Key Binding | Description                  |
    |-------------+------------------------------|
-   | ~, k d~     | insert digraph characters    |
+   | ~, k b d~   | insert digraph characters    |
+   | ~, k b h~   | show special symbols help    |
    | ~, k r~     | org refile                   |
    | ~, k s~     | org sort all level=2 entries |
    | ~, k c~     | org column mode              |
