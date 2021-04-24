@@ -91,6 +91,10 @@
                                            (function
                                              (lambda () (kirakuiin/org-capture-templates 'schedule)))
                                            :clock-resume t :kill-buffer t :clock-keep nil)
+                                          ("wa" "Appointment" entry (file+headline "~/org/gtd/work.org" "Appointment")
+                                           (function
+                                             (lambda () (kirakuiin/org-capture-templates 'appointment)))
+                                           :clock-resume t :kill-buffer t :clock-keep nil)
                                           ("wp" "Project" entry (file+headline "~/org/gtd/work.org" "Project")
                                            (function
                                              (lambda () (kirakuiin/org-capture-templates 'project)))
@@ -100,11 +104,15 @@
                                            (function
                                              (lambda () (kirakuiin/org-capture-templates 'task)))
                                            :clock-resume t :kill-buffer t :clock-keep nil)
-                                          ("lt" "Eureka" entry (file+headline "~/org/gtd/live.org" "Next Action")
+                                          ("lt" "Task" entry (file+headline "~/org/gtd/live.org" "Next Action")
                                            (function
                                              (lambda () (kirakuiin/org-capture-templates 'schedule)))
                                            :clock-resume t :kill-buffer t :clock-keep nil)
-                                          ("lp" "Eureka" entry (file+headline "~/org/gtd/live.org" "Project")
+                                          ("la" "Appointment" entry (file+headline "~/org/gtd/live.org" "Appointment")
+                                           (function
+                                             (lambda () (kirakuiin/org-capture-templates 'appointment)))
+                                           :clock-resume t :kill-buffer t :clock-keep nil)
+                                          ("lp" "Project" entry (file+headline "~/org/gtd/live.org" "Project")
                                            (function
                                              (lambda () (kirakuiin/org-capture-templates 'project)))
                                            :clock-resume t :kill-buffer t :clock-keep nil)

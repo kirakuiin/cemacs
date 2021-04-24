@@ -25,6 +25,7 @@
          (planning-end (if subtree end (line-end-position 2)))
          (dead-entry (org-entry-get nil "DEADLINE"))
          (sch-entry (org-entry-get nil "SCHEDULED"))
+         (ts-entry (org-entry-get nil "TIMESTAMP"))
          (deadline-day
            (if dead-entry
              (time-to-days
@@ -34,6 +35,11 @@
            (if sch-entry
              (time-to-days
                (org-time-string-to-time sch-entry))
+             nil))
+         (timestamp-day
+           (if ts-entry
+             (time-to-days
+               (org-time-string-to-time ts-entry))
              nil))
          (now (time-to-days (current-time)))
          m)
@@ -46,7 +52,8 @@
              (or
                (org-agenda-skip-if-todo m end)
                (not (or (and deadline-day (= deadline-day now))
-                        (and scheduled-day (= scheduled-day now))))))
+                        (and scheduled-day (= scheduled-day now))
+                        (and timestamp-day (= timestamp-day now))))))
       end)))
 
 (defun kirakuiin/org-sort-all-entries-by-todo ()
@@ -73,7 +80,7 @@
                              ("kt" "Today's Task"
                               ((agenda ""
                                        ((org-agenda-span 'day)
-                                        (org-agenda-entry-types '(:scheduled :deadline)) ;; 条目类型
+                                        (org-agenda-entry-types '(:scheduled :deadline :timestamp)) ;; 条目类型
                                         (org-agenda-skip-function '(kirakuiin/org-agenda-skip-if-only-today nil '(nottodo ("TODO"))))
                                         (org-deadline-warning-days 0)))) ;; 不显示警告
                               nil
@@ -138,6 +145,7 @@
    type are:
    'eureka : Record some idea with record time
    'task : A Complete task entry
+   'appointment' : A task with fix date
    'schedule : A task with SCHEDULED property
    'deadline : A task with DEADLINE property
    'sche&dead : A task with above two property
@@ -145,6 +153,7 @@
   (let* ((arg (or type 'eureka))
          (eureka "** %^{HEADLINE|Eureka}\n:PROPERTIES:\n:RECORD_TIME: %U\n:END:")
          (task "** %^{TODO}p%^{PRIORITY}p%^{HEADLINE|Task} %^g")
+         (appointment "** %^{TODO}p%^{HEADLINE|Appointment} %^g\n%^{TIMESTAMP}T")
          (schedule (concat task "\nSCHEDULED: %^{SCHEDULED}T"))
          (deadline (concat task "\nDEADLINE: %^{DEADLINE}T"))
          (sche&dead (concat schedule " DEADLINE: %^{DEADLINE}T"))
@@ -155,7 +164,8 @@
                           \n:TRIGGER+: parent todo!(DONE)\n:END:"))
          (templates (list (cons 'eureka eureka) (cons 'schedule schedule)
                           (cons 'deadline deadline) (cons 'sche&dead sche&dead)
-                          (cons 'task task) (cons 'project project)))
+                          (cons 'task task) (cons 'project project)
+                          (cons 'appointment appointment)))
          (result (cdr (assoc type templates))))
     (or result eureka)
     )
