@@ -57,6 +57,7 @@
          org-pretty-entities t  ;; 默认显示上下标
          org-pretty-entities-include-sub-superscripts t
          org-use-sub-superscripts '{} ;; 强制上下标语法加大括号
+         org-export-in-background t ;; 异步导出org文件
          )
     (c-c++ :variables
            c-c++-default-mode-for-headers 'c++-mode
