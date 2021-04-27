@@ -11,6 +11,20 @@
 
 ;;; Code:
 
+;;;###autoload
+(defun kirakuiin/get-layer-path ()
+  "Get the absolute path of this layer"
+  (configuration-layer/get-layer-path 'kirakuiin))
+
+;;;###autoload
+(defun kirakuiin/get-res-path (subpath)
+  "Get the absolute path of layer res path"
+  (and (stringp subpath)
+       (let ((base (kirakuiin/get-layer-path)))
+         (if (string-match "^/" subpath)
+           (concat base (substring subpath 1))
+           (concat base subpath)))))
+
 (configuration-layer/declare-layers
   '(
     markdown
@@ -58,6 +72,7 @@
          org-pretty-entities-include-sub-superscripts t
          org-use-sub-superscripts '{} ;; 强制上下标语法加大括号
          org-export-in-background t ;; 异步导出org文件
+         org-hide-macro-markers t ;; 不显示宏的花括号
          )
     (c-c++ :variables
            c-c++-default-mode-for-headers 'c++-mode
@@ -73,6 +88,11 @@
          lsp-enable-indentation nil
          lsp-enable-file-watchers nil
          )
+    (plantuml :variables
+              plantuml-jar-path (kirakuiin/get-res-path "res/plantuml.jar")
+              org-plantuml-jar-path (kirakuiin/get-res-path "/res/plantuml.jar")
+              plantuml-indent-level 4
+              )
     )
   )
 

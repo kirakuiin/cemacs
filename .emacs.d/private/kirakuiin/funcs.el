@@ -12,10 +12,7 @@
 (defvar kirakuiin/org-pomodoro-pos-info nil
   "When start a pomodoro, record buffer and point for restore context")
 
-(defun kirakuiin/get-layer-path ()
-  "Get the absolute path of this layer"
-  (configuration-layer/get-layer-path 'kirakuiin))
-
+;;;###autoload
 (defun kirakuiin/org-agenda-skip-if-only-today (subtree conditions)
   "Like org-agenda-skip-if, but only today's entry will be display"
   (org-back-to-heading t)
@@ -56,6 +53,7 @@
                         (and timestamp-day (= timestamp-day now))))))
       end)))
 
+;;;###autoload
 (defun kirakuiin/org-sort-all-entries-by-todo ()
   "Sort all top level entries in agenda files"
   (interactive)
@@ -73,6 +71,7 @@
     "+LEVEL=1+ITEM=\"Project\"" 'agenda)
   )
 
+;;;###autoload
 (defun kirakuiin/org-custom-varibles ()
   "custom org variables setting"
   (custom-set-variables '(org-agenda-custom-commands       ;; Org Agenda Commmand
@@ -96,6 +95,7 @@
                         '(org-refile-targets '((org-agenda-files :level . 1))))
   )
 
+;;;###autoload
 (defun kirakuiin/org-pomodoro-restart-pomodoro ()
   "Restart a pomodoro according to recorded buffer and point"
   (when kirakuiin/org-pomodoro-pos-info
@@ -108,6 +108,7 @@
                                 (interactive)
                                 (org-pomodoro))))))
 
+;;;###autoload
 (defun kirakuiin/org-pomodoro-hooks-on-winnt ()
   "Some system alert is not work. attach some hooks to fix this"
   (when (or (equal system-type 'windows-nt) (equal system-type 'darwin))
@@ -140,6 +141,7 @@
     )
   )
 
+;;;###autoload
 (defun kirakuiin/org-capture-templates(&optional type)
   "According to the type, return curresponding templates
    type are:
@@ -171,6 +173,7 @@
     )
   )
 
+;;;###autoload
 (defun kirakuiin/diary-sunrise ()
   "Diary sunrise func"
   (let ((dss (diary-sunrise-sunset)))
@@ -183,6 +186,7 @@
       (search-forward ",")
       (buffer-substring (point-min) (match-beginning 0)))))
 
+;;;###autoload
 (defun kirakuiin/diary-sunset ()
   "Diary sunset func"
   (let ((dss (diary-sunrise-sunset))
