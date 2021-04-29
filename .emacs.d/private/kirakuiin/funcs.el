@@ -162,6 +162,7 @@
          (project (concat sche&dead "\n:PROPERTIES:\n:BLOCKER: children\n:END:\
                           \n*** TODO FIRST-CHILD\n:PROPERTIES:\
                           \n:TRIGGER:  next-sibling todo!(TODO) scheduled!(\"++0h\") chain!(\"TRIGGER\")\n:END:\
+                          \n*** WAIT SIBLING\
                           \n*** WAIT LAST-CHILD\n:PROPERTIES:\
                           \n:TRIGGER+: parent todo!(DONE)\n:END:"))
          (templates (list (cons 'eureka eureka) (cons 'schedule schedule)
