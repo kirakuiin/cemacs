@@ -23,6 +23,9 @@
          (dead-entry (org-entry-get nil "DEADLINE"))
          (sch-entry (org-entry-get nil "SCHEDULED"))
          (ts-entry (org-entry-get nil "TIMESTAMP"))
+         (ts-split-pos (and ts-entry (string-match "--" ts-entry)))
+         (ts-entry-end (and ts-split-pos
+                            (substring ts-entry (+ 1 ts-split-pos))))
          (deadline-day
            (if dead-entry
              (time-to-days
@@ -38,8 +41,14 @@
              (time-to-days
                (org-time-string-to-time ts-entry))
              nil))
+         (timestamp-end-day
+           (if ts-split-pos
+             (time-to-days
+               (org-time-string-to-time ts-entry-end))
+             nil))
          (now (time-to-days (current-time)))
          m)
+    (and ts-split-pos (message "%s-%s" ts-entry ts-entry-end))
     (and
       (and (or
              (setq m (memq 'nottodo conditions))
@@ -50,7 +59,15 @@
                (org-agenda-skip-if-todo m end)
                (not (or (and deadline-day (= deadline-day now))
                         (and scheduled-day (= scheduled-day now))
-                        (and timestamp-day (= timestamp-day now))))))
+                        (and (not deadline-day) scheduled-day
+                             (>= now scheduled-day))
+                        (and deadline-day scheduled-day
+                             (and (<= scheduled-day now)
+                                  (>= deadline-day now)))
+                        (and timestamp-day (= timestamp-day now))
+                        (and timestamp-end-day
+                             (and (<= timestamp-day now)
+                                  (>= timestamp-end-day now)))))))
       end)))
 
 ;;;###autoload

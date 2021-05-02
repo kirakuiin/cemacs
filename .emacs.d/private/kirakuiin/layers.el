@@ -73,6 +73,7 @@
          org-use-sub-superscripts '{} ;; 强制上下标语法加大括号
          org-export-in-background t ;; 异步导出org文件
          org-hide-macro-markers t ;; 不显示宏的花括号
+         org-edit-src-auto-save-idle-delay 30 ;; 30s自动保存编辑的源文件
          )
     (c-c++ :variables
            c-c++-default-mode-for-headers 'c++-mode
