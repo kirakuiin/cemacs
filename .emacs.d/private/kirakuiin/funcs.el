@@ -76,17 +76,16 @@
   (interactive)
   (org-map-entries
     (lambda ()
-      (org-sort-entries nil ?o))
+      (ignore-errors (org-sort-entries nil ?o)))
+    "+LEVEL=1+ITEM=\"Project\"" 'agenda)
+  (org-map-entries
+    (lambda ()
+      (ignore-errors (org-sort-entries nil ?o)))
     "+LEVEL=1+ITEM=\"Next Action\"" 'agenda)
   (org-map-entries
     (lambda ()
-      (org-sort-entries nil ?o))
-    "+LEVEL=1+ITEM=\"Appointment\"" 'agenda)
-  (org-map-entries
-    (lambda ()
-      (org-sort-entries nil ?o))
-    "+LEVEL=1+ITEM=\"Project\"" 'agenda)
-  )
+      (ignore-errors (org-sort-entries nil ?o)))
+    "+LEVEL=1+ITEM=\"Appointment\"" 'agenda))
 
 ;;;###autoload
 (defun kirakuiin/org-custom-varibles ()
@@ -109,8 +108,7 @@
                                      ((org-agenda-archives-mode t)
                                       (org-agenda-span 'month)))))))
                         '(org-stuck-projects '("+LEVEL=2/-DONE-CANCELED" ("TODO" "SCH") ("future") ""))
-                        '(org-refile-targets '((org-agenda-files :level . 1))))
-  )
+                        '(org-refile-targets '((org-agenda-files :level . 1)))))
 
 ;;;###autoload
 (defun kirakuiin/org-pomodoro-restart-pomodoro ()
@@ -137,9 +135,15 @@
                   (org-notify "Start pomodoro.")
                   (let ((buffer-info (current-buffer))
                         (point-info (point)))
+                    ;; Handle agenda condition
+                    (when (equal (buffer-name) "*Org Agenda*")
+                      (progn
+                      (org-agenda-goto)
+                      (setq buffer-info (current-buffer))
+                      (setq point-info (point)))
+                      (pop-to-buffer "*Org Agenda*"))
                     ;; Save buffer and point info
-                    (setq kirakuiin/org-pomodoro-pos-info (cons buffer-info point-info)))
-                  ))
+                    (setq kirakuiin/org-pomodoro-pos-info (cons buffer-info point-info)))))
       (add-hook 'org-pomodoro-short-break-finished-hook
                 (lambda ()
                   (org-notify "Start pomodoro after short rest.")
@@ -153,10 +157,7 @@
                   (org-notify "Kill current pomodoro.")
                   (setq kirakuiin/org-pomodoro-pos-info nil)
                   ))
-      (message "pomodoro attach hook over")
-      )
-    )
-  )
+      (message "pomodoro attach hook over"))))
 
 ;;;###autoload
 (defun kirakuiin/org-capture-templates(&optional type)
@@ -187,9 +188,7 @@
                           (cons 'task task) (cons 'project project)
                           (cons 'appointment appointment)))
          (result (cdr (assoc type templates))))
-    (or result eureka)
-    )
-  )
+    (or result eureka)))
 
 ;;;###autoload
 (defun kirakuiin/diary-sunrise ()
