@@ -54,6 +54,8 @@
   )
 (setq-default calendar-holidays kirakuiin/holidays) ;; block all other holidays
 
+;; defalut editor setting
+
 ;; Python
 
 (add-hook 'python-mode-hook
@@ -77,6 +79,7 @@
             (message "org-mode-hook...")
             ;; Modeline setting
             (spacemacs/toggle-mode-line-org-clock-on)
+            (spacemacs/toggle-highlight-long-lines 80)
             (setq org-archive-location (concat "archive/archive-"
                                                (format-time-string "%Y" (current-time))
                                                ".org_archive::")
