@@ -35,16 +35,6 @@
     javascript
     (ipython-notebook :variables
                       ein-backend 'jupyter)
-    (python :variables
-            ; python-backend 'lsp
-            ; python-lsp-server 'pyright
-            ; python-test-runner 'pytest
-            ; python-formatter 'yapf
-            ; python-format-on-save t
-            ; python-save-before-test nil
-            ; python-sort-imports-on-save t
-            python-fill-column 80
-            )
     (lua :variables
          lua-backend 'lsp
          lua-lsp-server 'lua-language-server
