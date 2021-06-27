@@ -54,6 +54,10 @@
   )
 (setq-default calendar-holidays kirakuiin/holidays) ;; block all other holidays
 
+;; (defadvice org-agenda (around split-vertically activate)
+;;   (let ((split-width-threshold 320))  ; make org agenda always on the bottom
+;;    ad-do-it))
+
 ;; defalut editor setting
 
 ;; Python
