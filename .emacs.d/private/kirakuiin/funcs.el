@@ -108,7 +108,9 @@
                                      ((org-agenda-archives-mode t)
                                       (org-agenda-span 'month)))))))
                         '(org-stuck-projects '("+LEVEL=2/-DONE-CANCELED" ("TODO" "SCH") ("future") ""))
-                        '(org-refile-targets '((org-agenda-files :level . 1)))))
+                        '(org-refile-targets '((org-agenda-files :level . 1)))
+                        '(org-babel-load-languages
+                          '((plantuml . t) (C . t) (js . t) (emacs-lisp . t) (python . t)))))
 
 ;;;###autoload
 (defun kirakuiin/org-pomodoro-restart-pomodoro ()
