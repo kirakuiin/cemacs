@@ -103,8 +103,8 @@
                              ("kd" "All Done LEVEL=2 Task"
                               ((tags "+LEVEL=2/+DONE"
                                      ((org-agenda-span 'month)))))
-                             ("ka" "All Archive LEVEL=2 Task"
-                              ((tags "ARCHIVE+LEVEL=2"
+                             ("ka" "All Archive LEVEL=3 Task"
+                              ((tags "ARCHIVE+LEVEL=3"
                                      ((org-agenda-archives-mode t)
                                       (org-agenda-span 'month)))))))
                         '(org-stuck-projects '("+LEVEL=2/-DONE-CANCELED" ("TODO" "SCH") ("future") ""))
