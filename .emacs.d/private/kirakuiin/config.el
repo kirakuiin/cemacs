@@ -73,6 +73,7 @@
 (setq org-todo-keyword-faces
       '(("TODO" . "#dc752f") ("WAIT" . "#FFFF60")
                              ("SCH" . "#4f97d7")
+                             ("DOING" . "#e623ff")
                              ("DONE" . "#86dc2f")
                              ("CANCELED" . "#f2241f")))
 
