@@ -19,6 +19,7 @@
                                           "kr" 'org-refile
                                           "kc" 'org-columns
                                           "ks" 'kirakuiin/org-sort-all-entries-by-todo
+                                          "ko" 'kirakuiin/count-clock-times-in-buffer
                                           )
 
 (message "kirakuiin keybindings.el loaded")

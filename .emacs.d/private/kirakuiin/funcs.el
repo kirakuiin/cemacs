@@ -125,6 +125,7 @@
                                 (interactive)
                                 (org-pomodoro))))))
 
+
 ;;;###autoload
 (defun kirakuiin/org-pomodoro-hooks-on-winnt ()
   "Some system alert is not work. attach some hooks to fix this"
@@ -223,5 +224,23 @@
       (goto-char start)
       (capitalize-word 1)
       (buffer-substring start end))))
+
+(defun how-many-str (regexp str)
+  (loop with start = 0
+        for count from 0
+        while (string-match regexp str start)
+        do (setq start (match-end 0))
+        finally return count))
+
+;;;autoload
+(defun kirakuiin/count-clock-times-in-buffer (&optional date)
+  "Count pattern times in hole buffer
+if date not given, Use today's date as pattern
+"
+  (interactive)
+  (let* ((cur-date (if date date (format-time-string "%Y-%m-%d")))
+         (pattern (format "CLOCK.*%s.*\n" cur-date))
+         (count (how-many-str pattern (buffer-string))))
+    (print (format "clock nums is %d" count))))
 
 (message "kirakuiin funcs.el loaded")
