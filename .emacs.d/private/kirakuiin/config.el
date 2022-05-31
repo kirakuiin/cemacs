@@ -11,11 +11,14 @@
 
 ;; General
 
+(defconst LINE_LENGTH 120 "line length")
+
 (setq-default evil-escape-key-sequence "jk")
 (setq-default lsp-restart 'auto-restart)
 (setq-default gc-cons-threshold 10000000);
 (setq-default calendar-longitude 113.51221908543394)
 (setq-default calendar-latitude 23.15287104087724)
+(setq-default fill-column LINE_LENGTH)
 
 (defvar kirakuiin/holidays
   '(;;公历节日
@@ -84,11 +87,12 @@
             (message "org-mode-hook...")
             ;; Modeline setting
             (spacemacs/toggle-mode-line-org-clock-on)
-            (spacemacs/toggle-highlight-long-lines 80)
+            (spacemacs/toggle-highlight-long-lines LINE_LENGTH)
+            (toggle-truncate-lines)
+            (auto-fill-mode)
             (setq org-archive-location (concat "archive/archive-"
                                                (format-time-string "%Y" (current-time))
                                                ".org_archive::")
-
                   org-agenda-diary-file (kirakuiin/get-res-path "res/diary")
                   diary-file (kirakuiin/get-res-path "res/diary")
                   ;; org-agenda-category-icon-alist `(("work" ,(kirakuiin/get-res-path "img/work_icon.png")
