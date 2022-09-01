@@ -1,0 +1,2 @@
+emacs --daemon
+emacsclient ~
