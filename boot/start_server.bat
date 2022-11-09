@@ -1,2 +1,2 @@
 emacs --daemon
-emacsclient ~
+pause
